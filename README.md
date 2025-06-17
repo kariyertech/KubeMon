@@ -9,7 +9,6 @@
 ## ✨ Özellikler
 
 - 🔄 **Multi-Cluster Monitoring**: Birden fazla Kubernetes cluster'ını tek bir arayüzden izleyin
-- 📊 **Real-time Görselleştirme**: Pod durumları, kaynak kullanımı ve cluster sağlığını anlık takip edin
 - 🎨 **Modern Arayüz**: Kullanıcı dostu ve responsive web arayüzü
 - 🐳 **Docker Desteği**: Tek komutla kolay kurulum ve çalıştırma
 - 🔒 **Güvenli**: Kubeconfig dosyalarınız yerel olarak saklanır
