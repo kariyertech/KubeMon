@@ -1,0 +1,5 @@
+kubernetes
+sqlite-utils
+schedule
+flask
+flask-cors
