@@ -1,4 +1,4 @@
-# KubeMon
+git remote -v# KubeMon
 
 KubeMon, birden fazla Kubernetes cluster'ını izlemek ve pod durumlarını görselleştirmek için geliştirilmiş açık kaynak bir monitoring uygulamasıdır.
 
