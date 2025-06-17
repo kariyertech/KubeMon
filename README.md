@@ -1,29 +1,81 @@
-# KubeMon
+# 🚀 KubeMon
 
-KubeMon, birden fazla Kubernetes cluster'ını izlemek ve pod durumlarını görselleştirmek için geliştirilmiş açık kaynak bir monitoring uygulamasıdır.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-Compatible-green.svg)](https://kubernetes.io/)
 
-## Kurulum
+**KubeMon**, birden fazla Kubernetes cluster'ını merkezi olarak izlemenizi ve pod durumlarını gerçek zamanlı olarak görselleştirmenizi sağlayan açık kaynak kodlu bir monitoring uygulamasıdır.
 
-### 1. Repoyu klonlayın
-```sh
-git clone <repo-url>
+## ✨ Özellikler
+
+- 🔄 **Multi-Cluster Monitoring**: Birden fazla Kubernetes cluster'ını tek bir arayüzden izleyin
+- 📊 **Real-time Görselleştirme**: Pod durumları, kaynak kullanımı ve cluster sağlığını anlık takip edin
+- 🎨 **Modern Arayüz**: Kullanıcı dostu ve responsive web arayüzü
+- 🐳 **Docker Desteği**: Tek komutla kolay kurulum ve çalıştırma
+- 🔒 **Güvenli**: Kubeconfig dosyalarınız yerel olarak saklanır
+- ⚡ **Hızlı**: Optimized backend API ile yüksek performans
+
+## 🛠️ Teknolojiler
+
+**Frontend:**
+- React.js
+- Modern JavaScript/TypeScript
+- Responsive CSS
+
+**Backend:**
+- Python/Node.js API
+- Kubernetes API entegrasyonu
+- Real-time data processing
+
+**Infrastructure:**
+- Docker & Docker Compose
+- Kubernetes API clients
+
+## 📋 Gereksinimler
+
+- Docker ve Docker Compose
+- Geçerli Kubernetes cluster erişimi
+- Kubeconfig dosyaları (admin yetkili)
+
+## 🚀 Hızlı Başlangıç
+
+### 1. Projeyi İndirin
+
+```bash
+git clone https://github.com/[username]/KubeMon.git
 cd KubeMon
 ```
 
-### 2. Docker Compose ile başlatın
-```sh
-docker-compose up --build
+### 2. Kubeconfig Dosyalarını Ekleyin
+
+```bash
+# clusters/ klasörünü oluşturun (yoksa)
+mkdir -p clusters/
+
+# Kubeconfig dosyalarınızı kopyalayın
+cp /path/to/your/admin-cluster1.conf clusters/
+cp /path/to/your/admin-cluster2.conf clusters/
 ```
-Bu komut hem frontend hem backend servislerini başlatır. Varsayılan olarak:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000
 
-### 3. Kendi kubeconfig dosyalarınızı ekleyin
-`clusters/` klasörüne kendi admin-*.conf dosyalarınızı ekleyin. (Bu dosyaları paylaşmayın!)
+⚠️ **Güvenlik Uyarısı**: Kubeconfig dosyalarınızı asla git repository'sine commit etmeyin!
 
-## Lisans
-MIT License (GitHub üzerinden seçilecek)
+### 3. Uygulamayı Başlatın
 
----
+```bash
+# Tüm servisleri build edin ve başlatın
+docker-compose up --build
 
-> Hassas dosyalar (kubeconfig, .db, .env) repoya eklenmemelidir. Detaylar için .gitignore ve klasör README dosyalarına bakınız.
+# Arka planda çalıştırmak için
+docker-compose up --build -d
+```
+
+### 4. Uygulamayı Açın
+
+Uygulama başarıyla başladıktan sonra:
+
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:5000
+
+## 📄 Lisans
+
+Bu proje [MIT License](LICENSE) altında lisanslanmıştır.
