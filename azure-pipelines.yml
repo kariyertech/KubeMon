@@ -1,0 +1,40 @@
+pool:
+  name: <Pool-Name>
+
+variables:
+  imageName: 'kubemon'
+  IMAGE_TAG: $(Build.BuildNumber)
+
+stages:
+  - stage: BuildAndPush
+    displayName: Build and Push Docker Image
+    jobs:
+      - job: Build
+        steps:
+          - checkout: self
+
+          - task: Docker@2
+            displayName: Build & Push KubeMon
+            inputs:
+              command: buildAndPush
+              containerRegistry: <Container-Registry-Name>
+              repository: 'kubemon'
+              dockerfile: 'Dockerfile'
+              tags: '$(IMAGE_TAG)'
+              buildArguments: |
+                VITE_API_URL=/api
+              arguments: --no-cache
+
+          - task: CopyFiles@2
+            displayName: Copy deployment yamls
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: deployment.yaml
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/deploy-yamls'
+
+          - task: PublishBuildArtifacts@1
+            displayName: Publish deployment yamls as artifact
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)/deploy-yamls'
+              ArtifactName: 'deploy-yamls'
+              publishLocation: 'Container'

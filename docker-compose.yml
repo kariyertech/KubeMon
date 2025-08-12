@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  kubemon:
+    build: 
+      context: .
+      args:
+        VITE_API_URL: /api
+    volumes:
+      - ./clusters:/app/clusters
+      - ./data:/app/data
+    restart: always
+    environment:
+      - PYTHONUNBUFFERED=1
+      - VITE_API_URL=/api
+      - OPENAI_API_KEY=your-openai-key
+    ports:
+      - "3000:3000"  # Frontend
+      - "8000:8000"  # Backend API

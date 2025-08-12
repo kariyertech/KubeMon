@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/onurakdeniz/Desktop/KubeMon/backend/main.py", line 4, in <module>
+    from kube_client import load_and_process_cluster
+  File "/Users/onurakdeniz/Desktop/KubeMon/backend/kube_client.py", line 2, in <module>
+    from kubernetes import client, config
+ModuleNotFoundError: No module named 'kubernetes'

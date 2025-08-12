@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubemon-app
+  namespace: kubemon
+  labels:
+    app: kubemon-app
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: kubemon-app
+  template:
+    metadata:
+      labels:
+        app: kubemon-app
+    spec:
+      containers:
+        - name: kubemon
+          image: <registry-name>.azurecr.io/kubemon:$(Build.BuildNumber)
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: backend
+            - containerPort: 3000
+              name: frontend
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: VITE_API_URL
+              value: "/api"
+            - name: OPENAI_API_KEY
+              value: $(OPENAI_API_KEY)
+          volumeMounts:
+            - name: clusters
+              mountPath: /app/clusters
+            - name: data
+              mountPath: /app/data
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "256Mi"
+            limits:
+              cpu: "750m"
+              memory: "768Mi"
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: clusters
+          secret:
+            secretName: kubemon-clusters-secret
+        - name: data
+          persistentVolumeClaim:
+            claimName: kubemon-backend-pvc
+      imagePullSecrets:
+       - name: <az-ecr-name>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubemon-app
+  namespace: kubemon
+spec:
+  selector:
+    app: kubemon-app
+  ports:
+    - name: frontend
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+    - name: backend
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
