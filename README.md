@@ -1,8 +1,7 @@
 # 🚀 KubeMon
 
-**License:** ---
-
-## ✨ Özelliklerform:** Docker · Kubernetes
+**License:** MIT  
+**Platform:** Docker · Kubernetes
 
 KubeMon, bir veya birden fazla Kubernetes cluster’ını merkezi ve gerçek zamanlı olarak izleyebileceğiniz, pod ve cluster sağlığını görselleştiren açık kaynak monitoring ve dashboard uygulamasıdır.
 
@@ -25,15 +24,6 @@ Kritik uyarıları ve alarm durumlarını anında görüntüleyin:
 OpenAI destekli akıllı analiz ile event'lerinizi derinlemesine inceleyin:
 
 ![AI Analyze](images/screenshots/4-AI%20Analyze.png)
-
----
-
-## ✨ Özellikleron
-
-**License:** MIT  
-**Platform:** Docker · Kubernetes
-
-KubeMon, bir veya birden fazla Kubernetes cluster’ını merkezi ve gerçek zamanlı olarak izleyebileceğiniz, pod ve cluster sağlığını görselleştiren açık kaynak monitoring ve dashboard uygulamasıdır.
 
 ---
 
